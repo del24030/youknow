@@ -1,0 +1,4 @@
+CREATE TABLE early_access_requests (
+  email TEXT PRIMARY KEY NOT NULL,
+  requested_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

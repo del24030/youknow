@@ -1,0 +1,962 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><script src="/language.js"></script><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Envía mensajes privados con Kall. Usa un nombre de usuario, mantén tu número personal en privado y lleva tus conversaciones contigo."><title>Kall — Comunicación privada</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f5ef;color:#182b25;font-family:"DM Sans",system-ui,sans-serif}a{color:inherit}header,.wrap{max-width:1280px;margin:auto;padding-inline:5%}header{height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:30px;font-weight:700;letter-spacing:-.06em;text-decoration:none}nav{display:flex;gap:30px}nav a{text-decoration:none;font-size:14px}.hero{background:#183a31;color:#fff9e9;min-height:630px;display:grid;grid-template-columns:1.12fr 1fr;align-items:center;gap:40px;padding:65px 7%;border-radius:12px;overflow:hidden}h1,h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;line-height:.98;margin:0;letter-spacing:-.035em}h1{font-size:clamp(58px,7.5vw,112px)}h1 em{color:#dce7a9}p{line-height:1.65}.hero p{max-width:38ch;color:#e1e9dc;margin:26px 0}.button{display:inline-block;padding:14px 20px;border-radius:50px;background:#dce7a9;color:#182b25;text-decoration:none;font-weight:700}.visual{display:grid;place-items:center;min-height:440px;background:radial-gradient(ellipse,#527967 0%,transparent 67%);position:relative}.phone{width:min(275px,100%);border:7px solid #23312c;border-radius:33px;background:#fcfbf5;color:#182b25;box-shadow:0 30px 80px #0007;transform:rotate(-7deg);padding:25px 15px 16px}.phone strong{display:block;border-bottom:1px solid #dedfd5;padding-bottom:13px}.phone small{display:block;color:#52645b;text-align:center;margin:18px 0}.bubble{border-radius:16px;padding:10px 13px;background:#e8ebe0;width:fit-content;margin:12px 0;font-size:14px}.mine{background:#245244;color:white;margin-left:auto}.compose{border:1px solid #dedfd5;border-radius:20px;padding:9px 12px;color:#52645b;margin-top:26px;font-size:13px}.caption{position:absolute;bottom:0;font-size:12px;color:#e1e9dc}.section{padding:76px 5%;border-bottom:1px solid #d3d8cc;display:grid;grid-template-columns:1fr 1fr;gap:24px}.section h2{font-size:clamp(44px,6vw,78px)}.section p{max-width:52ch;margin-top:0}.section ul{padding-left:20px;line-height:1.9}footer{padding:32px 5%;display:flex;justify-content:space-between;gap:16px}a:focus-visible{outline:3px solid #889c42;outline-offset:5px}@media(max-width:720px){header{height:72px}nav{gap:12px}.hero,.section{grid-template-columns:1fr}.hero{padding:45px 7%}.visual{min-height:410px}.section{padding-block:50px}}
+
+body{background:#fff}
+header,.wrap{max-width:1800px;padding-inline:3%}
+header{height:74px}
+nav{align-items:center}
+nav .nav-early-access{background:#142528;color:#fff;padding:10px 16px;border-radius:9px}
+.hero{display:flex;flex-direction:column;text-align:center;gap:0;position:relative;min-height:0;height:clamp(660px,calc(100svh - 96px),1050px);padding:clamp(72px,14vh,170px) 5% 0;border-radius:26px;background:radial-gradient(ellipse at 50% 110%,#82ae9b 0%,#426866 38%,transparent 76%),#142325}
+.hero>div:first-child{z-index:1}
+.hero h1{font-family:"DM Sans",system-ui,sans-serif;font-weight:600;font-size:clamp(43px,5.65vw,96px);line-height:1.02;letter-spacing:-.07em;color:#f4faf5}
+.hero h1 em{font-style:normal;color:#d7eae1}
+.hero p{font-size:clamp(16px,1.7vw,25px);line-height:1.45;max-width:39ch;margin:24px auto;color:#e0ebe7}
+.hero .button{background:#e0eee5;padding:12px 20px;font-size:14px}
+.hero .visual{display:block;background:none;min-height:0;width:min(950px,88%);margin:clamp(42px,7vh,90px) auto 0}
+.hero .phone{width:100%;transform:none;min-height:520px;text-align:left;padding:22px clamp(22px,6vw,85px) 40px;border:clamp(8px,1.4vw,22px) solid #151d1e;border-radius:clamp(45px,8vw,135px) clamp(45px,8vw,135px) 0 0;background:#1c2a28;color:#f4faf5;box-shadow:0 -3px 2px #adbfba,0 -9px 0 #5d726c,0 24px 85px #0916159c,inset 0 2px 5px #000}
+.phone-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;font-size:clamp(13px,2vw,27px);font-weight:700;margin-bottom:24px}
+.phone-bar span:last-child{text-align:right}
+.camera{width:clamp(72px,17vw,240px);height:clamp(25px,4.5vw,64px);border-radius:99px;background:#070b0c}
+.hero .phone strong{border-color:#57746c}
+.hero .phone small{color:#ccddd6}
+.hero .bubble{color:#172925}
+.hero .mine{color:#fff}
+@media(max-width:720px){header{height:66px}nav .nav-early-access{padding:8px 10px}.hero{height:clamp(570px,calc(100svh - 80px),780px);padding-top:64px;border-radius:18px}.hero .visual{width:98%}.hero .phone{padding-top:14px}}
+
+.hero .phone{position:relative;border-color:transparent;background:linear-gradient(#182522,#233630) padding-box,linear-gradient(170deg,#849592 0%,#c1cbc6 2%,#556864 5%,#182421 16%,#0a100f 38%) border-box;box-shadow:0 -1px 0 #d0d9d4,0 24px 72px #081310b8,inset 0 0 0 clamp(4px,.7vw,10px) #090e0d}
+.phone-bar{margin-bottom:clamp(16px,3vw,36px);padding-inline:1%;letter-spacing:-.04em}
+.camera{position:relative;background:#060909;box-shadow:inset 0 1px 3px #ffffff21}
+.camera::after{content:"";position:absolute;right:10%;top:50%;width:18%;aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle at 40% 38%,#64768f 0%,#233449 15%,#111a24 28%,#090d12 55%,transparent 70%)}
+.status{display:flex;align-items:center;justify-content:flex-end;gap:clamp(6px,1vw,14px)}
+.signal{display:flex;align-items:flex-end;gap:2px;height:.65em}.signal b{width:.12em;border-radius:2px;background:#f4faf5;height:45%}.signal b:nth-child(2){height:62%}.signal b:nth-child(3){height:80%}.signal b:nth-child(4){height:100%}
+.battery{position:relative;width:1.15em;height:.56em;border:1px solid #b4c2bd;border-radius:.16em;padding:2px}.battery::before{content:"";display:block;height:100%;background:#f4faf5;border-radius:.07em}.battery::after{content:"";position:absolute;left:100%;top:28%;height:44%;width:2px;background:#b4c2bd}
+.hero .chat-header{display:flex;align-items:center;gap:12px;border-color:#ffffff26}.chevron{width:9px;height:9px;border-left:2px solid #bbdbcc;border-bottom:2px solid #bbdbcc;transform:rotate(45deg)}.avatar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#c8e1d2;color:#203c32;font-size:14px}
+.hero .compose{color:#b5c9c0;border-color:#ffffff38}
+
+.hero{height:auto;padding-bottom:clamp(56px,9vw,128px)}
+.hero .visual{width:min(490px,94%)}
+.hero .phone{display:flex;flex-direction:column;min-height:0;aspect-ratio:9/17;padding:clamp(13px,2vw,26px) clamp(16px,3.2vw,38px) 14px;border-width:clamp(7px,1vw,13px);border-radius:clamp(37px,7vw,74px)}
+.phone-bar{font-size:clamp(13px,2.6vw,19px)}
+.camera{width:clamp(68px,20vw,132px);height:clamp(24px,5vw,39px)}
+.hero .compose{margin-top:auto}
+.home-indicator{height:4px;width:32%;margin:13px auto 0;border-radius:99px;background:#e0ebe7}
+
+.hero{background:none;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0 0 auto;height:max(calc(100svh - 74px),520px);border-radius:26px 26px 0 0;background:radial-gradient(ellipse at 50% 110%,#82ae9b 0%,#426866 38%,transparent 76%),#142325;z-index:-1}
+@media(max-width:720px){.hero::before{height:max(calc(100svh - 66px),490px);border-radius:18px 18px 0 0}}
+
+.hero .visual{width:min(440px,91%)}
+.hero .phone{
+  aspect-ratio:9/18.7;
+  border-width:clamp(4px,.55vw,8px);
+  border-radius:clamp(42px,7vw,68px);
+  padding:clamp(15px,2vw,24px) clamp(17px,3vw,32px) 13px;
+  background:linear-gradient(160deg,#101b19,#172924 72%,#101d19) padding-box,
+    linear-gradient(145deg,#fbfff9 0%,#9faea9 5%,#3d4b48 20%,#252f2d 51%,#758480 76%,#c3d2ca 95%) border-box;
+  box-shadow:0 0 0 1px #182523,0 28px 72px -20px #081b17a8,inset 0 0 0 4px #050908;
+}
+.side-controls{position:absolute;left:-9px;top:19%;width:4px;height:8%;background:linear-gradient(#99aaa2,#384742);border-radius:3px 0 0 3px;box-shadow:0 58px 0 #5a6862}
+.side-controls::after{content:"";position:absolute;left:calc(min(440px,82vw) - 1px);top:25px;width:4px;height:125%;background:linear-gradient(#899b93,#384742);border-radius:0 3px 3px 0}
+.hero .visual{container-type:inline-size}
+.side-controls::after{left:calc(100cqw + 5px)}
+.phone-bar{font-size:clamp(13px,4cqw,17px);padding-inline:4%;margin-bottom:20px}
+.camera{width:clamp(68px,27cqw,118px);height:clamp(24px,8.5cqw,37px)}
+.hero .chat-header{padding-bottom:14px}
+.hero .bubble{max-width:85%;margin-block:6px}
+.hero .compose{margin-top:auto}
+
+.hero .visual{width:min(395px,91%);perspective:1200px}
+.hero .phone{--rim:clamp(3px,1cqw,4px);padding:0;border:var(--rim) solid transparent;border-radius:clamp(42px,15cqw,61px);background:linear-gradient(#090e0e,#090e0e) padding-box,linear-gradient(160deg,#e4ece9,#74827f 13%,#34403e 37%,#8e9d98 70%,#293331) border-box;box-shadow:0 0 0 1px #212e2c,0 32px 70px -24px #0017109c}
+.device-screen{flex:1;display:flex;flex-direction:column;position:relative;margin:6px;min-height:0;border-radius:inherit;overflow:hidden;padding:12px clamp(13px,5cqw,21px) 9px;background:linear-gradient(155deg,#fff 12%,#f7faf7 72%,#eff6ef);color:#142720;box-shadow:0 0 0 1px #000}
+.phone-bar{margin:0 0 20px;padding:0 3%;font-size:clamp(11px,3.8cqw,15px)}
+.camera{width:clamp(64px,24cqw,94px);height:clamp(19px,7.4cqw,29px)}
+.signal b,.battery::before{background:#172823}
+.battery{border-color:#53645f}.battery::after{background:#53645f}
+.hero .chat-header{border-color:#d8e2dc;font-size:clamp(14px,4.5cqw,18px);padding-bottom:11px}
+.chevron{border-color:#345d4d}.hero .phone small{color:#587063;margin:14px 0;font-size:clamp(10px,3.2cqw,13px)}
+.hero .bubble{font-size:clamp(11px,3.6cqw,14px);padding:clamp(7px,2.5cqw,11px);background:#e6eee8}
+.hero .mine{background:#245244}
+.hero .compose{display:flex;align-items:center;justify-content:space-between;background:#fff;border-color:#d8e2dc;color:#50675b;padding:5px 6px 5px 12px;margin-top:auto}
+.compose span{display:grid;place-items:center;border-radius:50%;width:24px;height:24px;background:#245244;color:#fff;font-size:16px}
+.home-indicator{background:#263b31;margin-top:9px;height:3px}
+.side-controls{left:-6px;width:2px}.side-controls::after{left:100cqw;width:2px}
+
+.device-screen{background:#fff;color:#171421}
+.phone-bar{margin-bottom:8px}
+.chat-tools,.contact,.chat-date,.hero .compose{display:flex;align-items:center}
+.chat-tools{justify-content:space-between;font-size:clamp(15px,5cqw,21px)}
+.contact{flex-direction:column;gap:5px;margin:0 0 18px}
+.contact .avatar{width:clamp(38px,17cqw,68px);height:auto;aspect-ratio:1;background:#e7d9fa;color:#49218d;font-size:clamp(20px,8cqw,32px)}
+.contact b{font-size:clamp(17px,6cqw,24px)}
+.contact span:last-child,.chat-date,time{font-size:clamp(9px,3cqw,12px);color:#534d62}
+.chat-date{gap:10px;margin-bottom:6px}
+.chat-date::before,.chat-date::after{content:"";height:1px;background:#dedbe6;flex:1}
+.hero .bubble{background:#f0eff2;color:#171421;max-width:100%;align-self:flex-start}
+.hero .mine{background:#e9ddfb;color:#171421;align-self:flex-end;margin-left:0}
+time{display:inline-block;white-space:nowrap;margin-left:6px}
+time b{color:#6332a9}
+.hero .compose{gap:8px;justify-content:initial;color:#514b60;border-color:#dedbe6}
+.compose label{flex:1;font-size:clamp(9px,3.2cqw,13px)}
+.compose span{background:#7951bd}
+.compose i{font-style:normal}
+.mic{width:8px;height:12px;border:1.5px solid #30253e;border-radius:8px;position:relative;margin:0 5px 3px}
+.mic::after{content:"";position:absolute;left:50%;top:100%;height:4px;border-left:1px solid #30253e}
+.hero .visual{width:min(500px,93%,63svh)}.visual img{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 24px #09181538)}
+
+.hero-conversation{position:absolute;inset:0;margin:0;padding:0;list-style:none;text-align:start}
+.hero-conversation li{width:fit-content;max-width:90%;padding:8px 13px;border-radius:16px 16px 16px 5px;background:#e8eee8;color:#182b25;font-size:clamp(14px,3.7vw,16px);line-height:1.35;box-shadow:0 3px 9px #182b250b}
+.hero-conversation li:nth-child(even){justify-self:end;border-radius:16px 16px 5px 16px;background:#e9ddfb;color:#30253e}
+.hero-conversation li:last-child{background:#dbece3}
+.hero-conversation li{position:absolute;display:grid;max-width:48%;z-index:1}
+.hero-conversation li:nth-child(1){top:7%;left:20%}
+.hero-conversation li:nth-child(2){top:17%;right:12%}
+.hero-conversation li:nth-child(3){top:36%;left:2%}
+.hero-conversation li:nth-child(4){top:48%;right:1%}
+.hero-conversation li:nth-child(5){bottom:23%;left:8%}
+.hero-conversation li:nth-child(6){bottom:13%;right:12%}
+.hero-conversation li:nth-child(7){bottom:3%;left:26%}
+@media(max-width:520px){
+  .hero-conversation li:nth-child(1){left:8%}
+  .hero-conversation li:nth-child(2){right:5%}
+  .hero-conversation li:nth-child(3){left:0}
+  .hero-conversation li:nth-child(5){left:0}
+  .hero-conversation li:nth-child(6){right:1%}
+  .hero-conversation li:nth-child(7){left:14%}
+}
+.hero-conversation li[data-lat]{background:var(--bubble-tint)}
+@media(prefers-reduced-motion:no-preference){
+  .hero-conversation.is-linked li{opacity:0;transform:none;width:max-content;max-width:46%;top:var(--bubble-y);left:var(--bubble-x);right:auto;bottom:auto;pointer-events:none}
+}
+.relay-world-section{position:relative;display:grid;align-content:center;min-height:78svh;padding:clamp(20px,3vw,38px) 5% clamp(28px,4vw,58px)}
+.relay-world-section h2{margin:0 auto clamp(8px,1.4vw,18px);text-align:center;font:400 clamp(38px,6vw,68px)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.035em}
+.relay-world{position:relative;display:grid;place-items:center;width:min(720px,100%);min-height:clamp(360px,48vw,460px);margin:0 auto;text-align:center}
+.relay-earth{display:block;width:clamp(165px,48%,290px);height:auto;aspect-ratio:1;margin:0 auto;border-radius:50%}
+@media(prefers-reduced-motion:no-preference){
+  main:has(.hero.has-scroll-conversation){overflow-anchor:none}
+  main > .wrap:has(> .hero.has-scroll-conversation){display:flow-root}
+  .hero.has-scroll-conversation{padding-bottom:16px;margin-bottom:var(--conversation-lift,0px)}
+  .hero.has-scroll-conversation::before{
+    transform:translateY(var(--background-hold,0px));
+  }
+  .hero .visual img{transform:translateY(var(--conversation-lift,0px))}
+  .hero-conversation li{opacity:var(--message-opacity,1);transform:translateY(var(--message-offset,0px))}
+}
+
+.section.privacy-section{display:block;width:100%;max-width:none;margin:0;padding:0;border:0;background:#fff;color:#182b25}
+.privacy-copy{max-width:660px;margin:auto;padding:clamp(36px,6vw,76px) 24px 12px;text-align:center}
+.privacy-copy p{margin:16px 0 0}
+.privacy-stage{position:relative}
+.privacy-film{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain}
+.privacy-toggle{position:absolute;right:20px;bottom:20px;padding:8px 14px;border:1px solid #ffffff65;border-radius:999px;background:#100d17b0;color:#fff;font:inherit;font-size:13px;cursor:pointer}
+.privacy-toggle[hidden]{display:none}
+.relay-gallery{padding-block:clamp(48px,7vw,104px);background:#fff}
+.relay-gallery-header{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:clamp(20px,3vw,36px)}
+.relay-gallery h2{font-size:clamp(34px,5vw,68px);line-height:1.02;letter-spacing:-.05em;margin:0}
+.relay-gallery-track{--gallery-gutter:max(3%,calc((100% - 1692px) / 2));display:flex;gap:clamp(14px,2vw,26px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gallery-gutter);padding:0 var(--gallery-gutter) 16px;margin:0;list-style:none;scrollbar-width:none}
+.relay-gallery-track::-webkit-scrollbar{display:none}
+.relay-gallery-card{position:relative;isolation:isolate;display:flex;align-items:flex-end;flex:0 0 clamp(270px,33vw,520px);min-width:0;min-height:clamp(350px,36vw,530px);overflow:hidden;scroll-snap-align:start;border-radius:clamp(18px,2vw,30px);background:#142820;color:#fff}
+.relay-gallery-card:has(.relay-gallery-signup){flex-basis:clamp(330px,61vw,960px);display:grid;grid-template-rows:1fr auto;justify-items:center;align-items:center;gap:clamp(24px,3vw,42px);padding:clamp(28px,4vw,52px) clamp(18px,4vw,56px) 0;background:radial-gradient(ellipse at 50% 68%,#f8fcf7,#e5efe6 66%,#d4e5da);color:#152d23;box-shadow:inset 0 0 0 1px #dbe8de}
+.relay-gallery-art{position:absolute;inset:0 0 auto;z-index:-2;width:100%;height:54%;display:grid;place-items:center}
+.relay-gallery-signup{position:relative;inset:auto;z-index:auto;height:auto;min-width:0;align-self:end}
+.relay-gallery-phone-crop{width:min(100%,360px);height:clamp(174px,22vw,255px);padding:0 12px}
+.relay-gallery-signup-device{position:relative;width:100%;aspect-ratio:1 / 2}
+.relay-gallery-signup-device img{display:block;width:100%;height:auto}
+.relay-gallery-phone-form{position:absolute;top:12%;inset-inline:14%;display:grid;gap:7px}
+.relay-gallery-phone-label{font-size:clamp(12px,1.3vw,15px);font-weight:600}
+.relay-gallery-chat{background:radial-gradient(ellipse at 50% 35%,#497062,transparent 73%)}
+.relay-gallery-copy{padding:clamp(22px,3vw,44px);max-width:100%}
+.relay-gallery-card:has(.relay-gallery-signup) .relay-gallery-copy{padding:0;max-width:38rem;text-align:center}
+.relay-gallery-card:has(.relay-gallery-device-art){flex-basis:clamp(340px,46vw,660px)}
+.relay-gallery-card .relay-gallery-device-art{inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center}
+.relay-gallery-card:has(.relay-gallery-device-art)::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,transparent 28%,#101e1a12 42%,#101e1ac9 74%,#101e1af5 100%)}
+.relay-gallery-card:has(.relay-gallery-device-art) .relay-gallery-copy{width:100%}
+.relay-gallery-card:has(.relay-gallery-device-art) p{max-width:43ch;color:#f5faf7}
+.relay-gallery-username{display:flex;align-items:center;width:100%;height:clamp(38px,5vw,52px);padding-inline:14px;border:1px solid #7b9e88;border-radius:11px;background:#fff;box-shadow:0 0 0 3px #dae9de}
+.relay-gallery-username{font-size:clamp(15px,1.7vw,19px);font-weight:500}
+.relay-gallery-username-caret{width:2px;height:19px;background:#254a3b;border-radius:2px}
+.relay-gallery-username.is-visible .relay-gallery-username-caret{animation:relay-caret 1.05s steps(1,end) infinite}
+@keyframes relay-caret{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.relay-gallery-username.is-visible .relay-gallery-username-caret{animation:none}}
+.relay-gallery-card:has(.relay-gallery-device-art){background:#162c40}
+.relay-gallery-card:has(.relay-gallery-share){
+  background:radial-gradient(ellipse at 10% 4%,#725292 0%,transparent 66%),linear-gradient(150deg,#422e59,#21182e 88%);
+}
+.relay-gallery-card .relay-gallery-share{
+  container-type:inline-size;
+  min-height:228px;
+  padding:24px clamp(22px,3vw,44px) 8px;
+  background:none;
+}
+.relay-gallery-share-artwork{width:100%}
+.relay-gallery-handle{
+  display:block;
+  color:#f9f0ff;
+  font-size:clamp(28px,14cqi,61px);
+  font-weight:650;
+  line-height:1.05;
+  letter-spacing:-.065em;
+  white-space:nowrap;
+}
+.relay-gallery-handle span{color:#d3b5f3}
+.relay-gallery-private-number{
+  display:flex;
+  gap:.24em;
+  width:max-content;
+  margin-top:10px;
+  color:#c8aee3;
+  font-size:clamp(19px,8cqi,34px);
+  font-weight:500;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+}
+.relay-gallery-private-number span{filter:blur(5px)}
+.relay-gallery-private-number .relay-gallery-number-part{filter:none}
+.relay-gallery-number-part span{display:inline-block}
+@media(prefers-reduced-motion:no-preference){
+  .relay-gallery-private-number.is-ready span{filter:none}
+  .relay-gallery-private-number.is-blurring .relay-gallery-number-part span{
+    animation:relay-number-blur 9s ease-in-out infinite both;
+    animation-delay:calc(var(--digit-delay) * .07s);
+  }
+}
+@keyframes relay-number-blur{
+  0%,33.333%,88.333%,100%{filter:blur(0);transform:translateY(0);opacity:1}
+  38.333%,83.333%{filter:blur(5px);transform:translateY(-.22em);opacity:.62}
+}
+.relay-gallery-share + .relay-gallery-copy p{color:#eee3fb}
+.relay-gallery-card:has(.relay-gallery-calling){
+  display:grid;grid-template-rows:auto 1fr;
+  background:radial-gradient(ellipse at 72% 92%,#576e60,transparent 72%),linear-gradient(145deg,#253930,#14231e);
+}
+.relay-gallery-copy:has(+ .relay-gallery-calling){padding-bottom:10px}
+.relay-gallery-copy:has(+ .relay-gallery-calling) p{color:#e1ece5}
+.relay-gallery-card .relay-gallery-chat.relay-gallery-calling{
+  align-self:end;display:grid;height:auto;padding:20px 12px 0;background:none;
+}
+.relay-gallery-calling .relay-gallery-phone-crop{
+  width:min(100%,274px);height:clamp(180px,22vw,265px);padding:0;
+}
+.relay-gallery-call-device{position:relative;width:100%;aspect-ratio:660 / 1536}
+.relay-gallery-call-device img{display:block;width:100%;height:auto}
+.relay-gallery-call{
+  position:absolute;top:14%;left:12%;width:65%;display:grid;justify-items:center;gap:8px;
+  transform:skewY(-10deg);text-align:center;color:#152d23;
+}
+.relay-gallery-call-number{
+  display:block;height:1.25em;overflow:hidden;
+  font-size:clamp(14px,1.7vw,20px);line-height:1.25;font-variant-numeric:tabular-nums;
+  letter-spacing:0;white-space:nowrap;
+}
+.relay-gallery-call-reel{display:block}
+.relay-gallery-call-digit{display:inline-block;width:.6em;height:1.25em;overflow:hidden;vertical-align:top}
+.relay-gallery-call-strip,.relay-gallery-call-strip span{display:block}
+.relay-gallery-call-state{display:flex;align-items:center;gap:6px;color:#456354;font-size:12px;font-weight:650}
+.relay-gallery-call-state::before{content:"";width:6px;height:6px;border-radius:50%;background:#669f80}
+.relay-gallery-handset{
+  display:grid;place-items:center;width:38px;height:38px;margin-top:5px;border-radius:50%;
+  background:#dcece2;color:#254a3b;font-size:19px;box-shadow:0 0 0 1px #78988845;
+}
+.relay-gallery-card:has(.relay-gallery-chat):not(:has(.relay-gallery-calling)){display:grid;grid-template-rows:minmax(185px,1fr) auto}
+.relay-gallery-card .relay-gallery-chat{position:relative;inset:auto;height:100%;z-index:auto}
+.relay-gallery-card h3{margin:18px 0 5px;font-size:clamp(22px,2.4vw,34px);line-height:1.1;letter-spacing:-.035em}
+.relay-gallery-card p{margin:0;color:#dfebe5;font-size:clamp(15px,1.45vw,19px);line-height:1.5}
+.relay-gallery-card:has(.relay-gallery-signup) h3{margin:0 0 14px;font-size:clamp(30px,4vw,60px);line-height:1.03;letter-spacing:-.055em;text-wrap:balance}
+.relay-gallery-card:has(.relay-gallery-signup) p{color:#3e564a;max-width:42ch;margin-inline:auto}
+.relay-gallery-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:12px}
+.relay-gallery-actions button{display:grid;place-items:center;border:0;background:#e9eeeb;color:#21372f;border-radius:50%;width:44px;height:44px;cursor:pointer}
+.relay-gallery-actions button:hover{background:#dce6e0}
+.relay-gallery-actions button:focus-visible{outline:2px solid #345d4d;outline-offset:3px}
+.relay-gallery-actions button::before{content:"";width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateX(2px) rotate(135deg)}
+.relay-gallery-actions button + button::before{transform:translateX(-2px) rotate(-45deg)}
+.relay-gallery-actions button:disabled{opacity:.35;cursor:default}
+@media(max-width:700px){
+  .relay-gallery-card,.relay-gallery-card:has(.relay-gallery-signup){flex-basis:85%;min-height:420px}
+  .relay-gallery-card:has(.relay-gallery-signup){flex-basis:90%;gap:24px}
+  .relay-gallery-card:has(.relay-gallery-device-art){flex-basis:90%}
+  .relay-gallery-chat{height:49%}
+  .relay-gallery-card:has(.relay-gallery-signup) .relay-gallery-copy{max-width:100%}
+}
+@media(max-width:460px){header{gap:12px}header nav{gap:10px}header nav a{font-size:12px}}
+.early-access{max-width:800px;margin:clamp(48px,8vw,110px) auto;text-align:center;padding:clamp(28px,6vw,72px) clamp(20px,6vw,64px);border-radius:24px;background:linear-gradient(150deg,#f0f6f1,#e3eee7);border:1px solid #dbe8df;scroll-margin-top:24px}
+.early-access h2{font-size:clamp(42px,6vw,68px)}
+.early-access p{margin:16px auto 24px}
+.early-access form{max-width:520px;margin:auto;text-align:start}
+.early-access label{display:block;margin-bottom:8px;font-weight:700}
+.early-access-fields{display:flex;flex-wrap:wrap;gap:10px}
+.early-access input{flex:1 1 200px;min-width:0;border:1px solid #799084;border-radius:24px;padding:12px 16px;font:inherit;background:white;color:#182b25}
+.early-access .button{background:#183a31;color:white;border:0;font:inherit;font-weight:700;cursor:pointer}
+.early-access .button:disabled{opacity:.65;cursor:wait}
+.early-access :is(input,button):focus-visible{outline:3px solid #345d4d;outline-offset:3px}
+.early-access .form-privacy{margin:12px 0 0;font-size:.875rem}
+.early-access .form-status:not(:empty){margin:16px 0 0}
+.early-access .form-status[data-state="success"]{padding:11px 14px;border-radius:12px;background:#d7e9de;color:#183a31;font-weight:600}
+@media(max-width:540px){.early-access-fields>*{flex:1 1 100%}}
+.footer-details{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 20px}
+</style><link rel="alternate" hreflang="en" href="/"></head><body>
+<header><a class="brand" href="#">Kall</a><nav aria-label="Navegación principal"><a href="#features">Funciones</a><a href="#product">Acerca de</a><a href="#privacy">Privacidad</a><a class="nav-early-access" href="#early-access">Acceso anticipado</a><a href="/" lang="en" hreflang="en" data-language-choice="en">English</a></nav></header>
+<main><div class="wrap"><section class="hero"><div><h1>Empieza con un nombre de usuario.<br><em>Chatea en privado.</em></h1><p>Envía mensajes cifrados de extremo a extremo desde tu navegador y mantén tu número personal en privado.</p><a class="button" href="#early-access">Solicita acceso anticipado</a></div><div class="visual"><img src="/relay-floating.png" width="1024" height="1536" alt="Teléfono verde mostrando una conversación con Alex en Kall"></div>
+</section>
+</div>
+<section class="relay-world-section" aria-labelledby="relay-world-title">
+  <h2 id="relay-world-title">Conversaciones por todo el mundo.</h2>
+  <div class="relay-world">
+    <canvas class="relay-earth" width="360" height="360" role="img" aria-label="Globo giratorio con continentes punteados"></canvas>
+    <ul class="hero-conversation" aria-label="Mensajes en diferentes idiomas">
+      <li lang="en" data-lat="40.71" data-lon="-74.01" style="--bubble-accent:#2a9d80;--bubble-tint:#e3f6ef" data-phrases="How’s your day?|Talk soon!">Oh, hello!</li>
+      <li lang="fr" data-lat="48.86" data-lon="2.35" style="--bubble-accent:#dc5362;--bubble-tint:#ffe9ec" data-phrases="Salut, ça va ?|À bientôt !">Bonjour, mademoiselle !</li>
+      <li lang="pt" data-lat="-23.55" data-lon="-46.63" style="--bubble-accent:#ad7b19;--bubble-tint:#fff4d9" data-phrases="Tudo bem por aí?|Me conta as novidades!">Como tá você?</li>
+      <li lang="es" data-lat="40.42" data-lon="-3.70" style="--bubble-accent:#4385e6;--bubble-tint:#e8f1ff" data-phrases="¿Cómo va todo?|¡Qué gusto verte!">Hola, ¿qué tal?</li>
+      <li lang="ja" data-lat="35.68" data-lon="139.69" style="--bubble-accent:#a774db;--bubble-tint:#f4eaff" data-phrases="元気？|また話そうね！">ありがとう！</li>
+      <li lang="es" data-lat="4.71" data-lon="-74.07" style="--bubble-accent:#d07542;--bubble-tint:#ffede0" data-phrases="¿Nos vemos pronto?|Te extraño.">Quiero verte.</li>
+      <li lang="sw" data-lat="-6.79" data-lon="39.21" style="--bubble-accent:#319d96;--bubble-tint:#e2f7f4" data-phrases="Uko salama?|Tuongee baadaye!">Habari yako?</li>
+    </ul>
+  </div>
+</section>
+<section class="relay-gallery" id="features" aria-labelledby="relay-gallery-title">
+  <div class="wrap relay-gallery-header">
+    <h2 id="relay-gallery-title">Conoce Kall de cerca.</h2>
+  </div>
+  <ul class="relay-gallery-track" id="relay-gallery-track" tabindex="0" aria-label="Galería de funciones de Kall">
+    <li class="relay-gallery-card">
+      <div class="relay-gallery-copy">
+        <h3>Solo necesitas un nombre de usuario para empezar.</h3>
+        <p>Regístrate sin un número de teléfono ni una dirección de correo electrónico.</p>
+      </div>
+      <div class="relay-gallery-art relay-gallery-signup" aria-hidden="true">
+        <div class="relay-gallery-phone-crop">
+          <div class="relay-gallery-signup-device">
+            <img src="/relay-signup-front.webp" alt="" width="768" height="1536">
+            <div class="relay-gallery-phone-form">
+              <div class="relay-gallery-phone-label">Nombre de usuario</div>
+              <div class="relay-gallery-username"><span class="relay-gallery-username-value">alex</span><span class="relay-gallery-username-caret"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="relay-gallery-card">
+      <div class="relay-gallery-art relay-gallery-chat relay-gallery-share" aria-hidden="true">
+        <div class="relay-gallery-share-artwork">
+          <b class="relay-gallery-handle"><span>@</span>alex.rivera</b>
+          <span class="relay-gallery-private-number">+<span>1 (202) 555-0142</span></span>
+        </div>
+      </div>
+      <div class="relay-gallery-copy">
+        <h3>Comparte tu nombre de usuario y mantén tu número en privado.</h3>
+        <p>Deja que otros se comuniquen contigo sin darles tu número personal.</p>
+      </div>
+    </li>
+    <li class="relay-gallery-card">
+      <img class="relay-gallery-art relay-gallery-device-art" src="/relay-device-flat-lay-prototype.webp" width="1536" height="1024" loading="lazy" alt="Computadora, tableta, teléfonos y reloj con ejemplos de chats de Kall">
+      <div class="relay-gallery-copy">
+        <h3>Sigue chateando en tu navegador.</h3>
+        <p>Abre Kall en tu computadora y retoma la conversación donde la dejaste.</p>
+      </div>
+    </li>
+    <li class="relay-gallery-card">
+      <div class="relay-gallery-copy">
+        <h3>Consigue un número cuando lo necesites.</h3>
+        <p>Agrega un número de Estados Unidos en Kall para llamar y enviar mensajes a personas fuera de la app.</p>
+      </div>
+      <div class="relay-gallery-art relay-gallery-chat relay-gallery-calling" aria-hidden="true">
+        <div class="relay-gallery-phone-crop">
+          <div class="relay-gallery-call-device">
+            <img src="/relay-calling-three-quarter.webp" alt="" width="660" height="1536">
+            <div class="relay-gallery-call">
+              <span class="relay-gallery-call-state">Llamando…</span>
+              <b class="relay-gallery-call-number"><span class="relay-gallery-call-reel">+1 (202) 555-0198</span></b>
+              <span class="relay-gallery-handset">✆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="wrap relay-gallery-actions">
+    <button type="button" aria-label="Función anterior" aria-controls="relay-gallery-track"></button>
+    <button type="button" aria-label="Siguiente función" aria-controls="relay-gallery-track"></button>
+  </div>
+</section>
+<div class="wrap">
+
+<section class="section" id="product" aria-labelledby="product-title">
+  <h2 id="product-title">Lleva tus chats contigo.</h2>
+  <div>
+    <p>Mira cuándo leen tus mensajes y recupera tus conversaciones al cambiar de computadora.</p>
+  </div>
+</section>
+</div>
+<section class="section privacy-section" id="privacy" aria-labelledby="privacy-title">
+  <div class="privacy-copy">
+    <h2 id="privacy-title">Privacidad desde el diseño.</h2>
+    <p>Los chats entre usuarios de Kall están cifrados de extremo a extremo. Kall no vende tus datos ni usa tus conversaciones para mostrarte anuncios personalizados.</p>
+  </div>
+  <div class="privacy-stage">
+    <video class="privacy-film" muted playsinline preload="none" poster="/relay-privacy-poster.jpg" width="1280" height="720" aria-label="Video de privacidad de Kall. Un mensaje cifrado viaja durante la noche y llega a un teléfono al amanecer.">
+      <source src="/relay-privacy.mp4" type="video/mp4">
+      <a href="/relay-privacy.mp4">Ver el video de privacidad de Kall</a>
+    </video>
+    <button class="privacy-toggle" type="button" hidden>Reproducir video</button>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="early-access" id="early-access" aria-labelledby="early-access-title">
+    <h2 id="early-access-title">Obtén acceso anticipado a Kall.</h2>
+    <p>Déjanos tu correo y te avisaremos cuando abra el acceso anticipado.</p>
+    <form action="/api/early-access?lang=es" method="post">
+      <label for="early-access-email">Correo electrónico</label>
+      <div class="early-access-fields">
+        <input id="early-access-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="early-access-privacy" required>
+        <button class="button" type="submit">Solicita acceso anticipado</button>
+      </div>
+      <p class="form-privacy" id="early-access-privacy">Usaremos tu correo para contactarte sobre el acceso anticipado a Kall. Consulta nuestra <a href="/es/privacy-policy/">Política de privacidad</a> para saber cómo solicitar que eliminemos tus datos.</p>
+      <p class="form-status" role="status"></p>
+    </form>
+  </section>
+</div>
+</main><footer class="wrap"><span>Kall</span><div class="footer-details"><a href="/es/privacy-policy/">Política de privacidad</a><span>Estados Unidos</span></div></footer><script>
+
+const earlyAccessForm = document.querySelector('#early-access form');
+earlyAccessForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const status = earlyAccessForm.querySelector('.form-status');
+  const submit = earlyAccessForm.querySelector('button');
+  submit.disabled = true;
+  delete status.dataset.state;
+  status.textContent = 'Sending your request…';
+  try {
+    const response = await fetch(earlyAccessForm.action, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: new URLSearchParams(new FormData(earlyAccessForm))
+    });
+    const result = await response.json();
+    status.textContent = result.message;
+    if (response.ok) {
+      status.dataset.state = 'success';
+      earlyAccessForm.reset();
+    }
+  } catch {
+    status.textContent = 'No pudimos enviar tu solicitud. Inténtalo de nuevo.';
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+const hero = document.querySelector('.hero');
+const heroVisual = hero.querySelector('.visual');
+hero.classList.add('has-scroll-conversation');
+const heroConversation = document.querySelector('.hero-conversation');
+const heroMessages = [...heroConversation.children];
+const world = document.querySelector('.relay-world');
+const worldSection = world.parentElement;
+const heroMotion = matchMedia('(prefers-reduced-motion: no-preference)');
+let heroFrame = 0;
+
+function updateHeroConversation() {
+  heroFrame = 0;
+  if (!heroMotion.matches) return;
+
+  const viewportHeight = window.innerHeight;
+  const image = heroVisual.getBoundingClientRect();
+  // The handset occupies rows 63–1509 in the 1536px transparent image.
+  const phoneTop = image.top + image.height * (63 / 1536);
+  const phoneBottom = image.top + image.height * (1509 / 1536);
+  const phoneCenter = (phoneTop + phoneBottom) / 2;
+  const distance = Math.max(0, viewportHeight / 2 - phoneCenter);
+  // Measure the remaining travel from the centered position to the top edge.
+  const liftRate = 0.38;
+  const centeredBottom = (viewportHeight + phoneBottom - phoneTop) / 2;
+  const phoneExit = centeredBottom / (1 + liftRate);
+  const travel = Math.min(distance, phoneExit) * liftRate;
+  const heroTop = hero.getBoundingClientRect().top;
+  const greenEdge = heroTop + parseFloat(getComputedStyle(hero, '::before').height);
+  hero.style.setProperty('--conversation-lift', `${-travel}px`);
+  const worldBounds = worldSection.getBoundingClientRect();
+  const leadingBubbleTop = worldBounds.top + world.offsetTop;
+  const clearance = 24;
+  const backgroundPause = viewportHeight * 0.10;
+  const backgroundDrift = Math.max(0, Math.min(distance, phoneExit) - backgroundPause);
+  const pacedHold = Math.min(distance, backgroundPause) + backgroundDrift * 0.10;
+  const backgroundHold = Math.min(pacedHold, leadingBubbleTop - greenEdge - clearance);
+  hero.style.setProperty('--background-hold', `${backgroundHold}px`);
+
+  const revealStart = 0.04;
+  const revealInterval = 0.052;
+  const revealDuration = 0.12;
+  const progress = (viewportHeight - worldBounds.top - world.offsetTop) / viewportHeight;
+
+  heroMessages.forEach((message, index) => {
+    const reveal = Math.max(0, Math.min(1, (progress - revealStart - index * revealInterval) / revealDuration));
+    message.style.setProperty('--message-opacity', reveal);
+    message.style.setProperty('--message-offset', `${18 * (1 - reveal)}px`);
+  });
+}
+
+function scheduleHeroConversation() {
+  if (!heroFrame) heroFrame = requestAnimationFrame(updateHeroConversation);
+}
+
+window.addEventListener('scroll', scheduleHeroConversation, { passive: true });
+window.addEventListener('resize', scheduleHeroConversation);
+heroVisual.querySelector('img').addEventListener('load', scheduleHeroConversation);
+heroMotion.addEventListener('change', scheduleHeroConversation);
+updateHeroConversation();
+
+
+const earth = document.querySelector('.relay-earth');
+const earthContext = earth.getContext('2d');
+const earthTexture = new Image();
+
+earthTexture.addEventListener('load', () => {
+  if (!earthContext) return;
+  const texture = document.createElement('canvas');
+  texture.width = earthTexture.naturalWidth;
+  texture.height = earthTexture.naturalHeight;
+  const textureContext = texture.getContext('2d');
+  textureContext.drawImage(earthTexture, 0, 0);
+  const pixels = textureContext.getImageData(0, 0, texture.width, texture.height).data;
+
+  const size = earth.width;
+  const frame = earthContext.createImageData(size, size);
+  const surface = [];
+  const tilt = 0.22;
+  const sinTilt = Math.sin(tilt);
+  const cosTilt = Math.cos(tilt);
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      const x = (col + 0.5) * 2 / size - 1;
+      const y = 1 - (row + 0.5) * 2 / size;
+      const radiusSquared = x * x + y * y;
+      if (radiusSquared >= 1) continue;
+      const z = Math.sqrt(1 - radiusSquared);
+      const latitude = Math.asin(y * cosTilt + z * sinTilt);
+      const longitude = Math.atan2(x, z * cosTilt - y * sinTilt);
+      const light = 0.32 + 0.68 * Math.max(0, -0.35 * x + 0.44 * y + 0.82 * z);
+      const dotDistance = Math.hypot(col % 7 - 3, row % 7 - 3);
+      const dot = Math.max(0, Math.min(1, 2.2 - dotDistance)) * z ** 0.4;
+      surface.push({
+        target: (row * size + col) * 4,
+        column: (0.5 + longitude / (2 * Math.PI)) * texture.width,
+        rowOffset: Math.min(texture.height - 1, Math.floor((0.5 - latitude / Math.PI) * texture.height)) * texture.width,
+        light,
+        dot,
+        atmosphere: 0.18 * (1 - z) ** 3
+      });
+    }
+  }
+
+  const ocean = [21, 46, 42];
+  const land = [127, 232, 188];
+  const rim = [65, 111, 99];
+
+  function drawEarth(rotation) {
+    let landCoverage = 0;
+    for (const point of surface) {
+      const column = Math.floor(point.column + rotation) % texture.width;
+      const source = (point.rowOffset + column) * 4;
+      const dot = pixels[source] ? point.dot : 0;
+      landCoverage += dot;
+      for (let channel = 0; channel < 3; channel++) {
+        const shaded = (ocean[channel] + (land[channel] - ocean[channel]) * dot) * point.light;
+        frame.data[point.target + channel] = shaded + (rim[channel] - shaded) * point.atmosphere;
+      }
+      frame.data[point.target + 3] = 255;
+    }
+    earthContext.putImageData(frame, 0, 0);
+    return landCoverage / surface.length;
+  }
+
+  const markers = heroMessages.map(bubble => ({
+    bubble,
+    latitude: Number(bubble.dataset.lat) * Math.PI / 180,
+    longitude: Number(bubble.dataset.lon) * Math.PI / 180,
+    color: bubble.style.getPropertyValue('--bubble-accent'),
+    phrases: [bubble.textContent, ...bubble.dataset.phrases.split('|')],
+    lastPhrase: bubble.textContent,
+    expiresAt: 0,
+    litAt: -Infinity
+  }));
+  const randomBetween = (min, max) => min + Math.random() * (max - min);
+  let nextMessageAt = 0;
+
+  function showMessage(marker, now) {
+    const { bubble } = marker;
+    const phrases = marker.phrases.filter(phrase => phrase !== marker.lastPhrase);
+    const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    const { width, height } = heroConversation.getBoundingClientRect();
+    const globe = earth.getBoundingClientRect();
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = globe.width / 2 + 8;
+    const occupied = markers.filter(other => other.expiresAt > now).map(other => {
+      const { bubble } = other;
+      return { x: bubble.offsetLeft, y: bubble.offsetTop, w: bubble.offsetWidth, h: bubble.offsetHeight };
+    });
+
+    bubble.textContent = phrase;
+    const w = bubble.offsetWidth;
+    const h = bubble.offsetHeight;
+    for (let attempt = 0; attempt < 36; attempt++) {
+      const x = Math.round(randomBetween(0, Math.max(0, width - w)));
+      const y = Math.round(randomBetween(0, Math.max(0, height - h)));
+      const dx = Math.max(x - centerX, centerX - x - w, 0);
+      const dy = Math.max(y - centerY, centerY - y - h, 0);
+      if (Math.hypot(dx, dy) < radius || Math.hypot(dx, dy) > radius + Math.min(130, width * 0.24)) continue;
+      if (occupied.some(box => x < box.x + box.w + 10 && x + w + 10 > box.x &&
+          y < box.y + box.h + 10 && y + h + 10 > box.y)) continue;
+
+      const duration = randomBetween(6200, 7600);
+      bubble.style.setProperty('--bubble-x', `${x}px`);
+      bubble.style.setProperty('--bubble-y', `${y}px`);
+      marker.lastPhrase = phrase;
+      marker.expiresAt = now + duration;
+      marker.litAt = now;
+      marker.animation = bubble.animate([
+        { opacity: 0, transform: 'translateY(5px) scale(.98)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)', offset: 240 / duration },
+        { opacity: 1, offset: randomBetween(0.25, 0.34), easing: 'ease-in-out' },
+        { opacity: 0 }
+      ], { duration });
+      return true;
+    }
+    return false;
+  }
+
+  function drawMessageMarker(rotation, now) {
+    const facing = markers.map(marker => {
+      const longitude = marker.longitude - rotation / texture.width * 2 * Math.PI;
+      const x = Math.cos(marker.latitude) * Math.sin(longitude);
+      const y = Math.sin(marker.latitude);
+      const z = Math.cos(marker.latitude) * Math.cos(longitude);
+      return {
+        marker, x,
+        y: y * cosTilt - z * sinTilt,
+        depth: y * sinTilt + z * cosTilt
+      };
+    }).filter(point => point.depth > 0.30);
+    if (now >= nextMessageAt) {
+      const available = facing.filter(({ marker }) => marker.expiresAt <= now);
+      const choice = available[Math.floor(Math.random() * available.length)];
+      nextMessageAt = choice && showMessage(choice.marker, now)
+        ? now + randomBetween(800, 1850)
+        : now + 240;
+    }
+
+    const point = facing.reduce((latest, candidate) =>
+      candidate.marker.litAt > (latest?.marker.litAt ?? now - 2100) ? candidate : latest, undefined);
+    if (!point) return;
+
+    const x = (point.x + 1) * size / 2;
+    const y = (1 - point.y) * size / 2;
+    const pulse = 0.5 + 0.5 * Math.sin(now / 180);
+    earthContext.save();
+    earthContext.fillStyle = point.marker.color;
+    earthContext.shadowColor = point.marker.color;
+    earthContext.shadowBlur = 12;
+    const glow = 1 - Math.min(1, (now - point.marker.litAt) / 2100);
+    earthContext.globalAlpha = (0.25 + pulse * 0.25) * glow;
+    earthContext.beginPath();
+    earthContext.arc(x, y, 8 + pulse * 3, 0, 2 * Math.PI);
+    earthContext.fill();
+    earthContext.globalAlpha = glow;
+    earthContext.beginPath();
+    earthContext.arc(x, y, 4.5, 0, 2 * Math.PI);
+    earthContext.fill();
+    earthContext.restore();
+  }
+
+  let visible = false;
+  let timer;
+  let rotation = texture.width * 0.04;
+  let rotationSpeed = 1;
+  function syncEarthRotation() {
+    if (visible && heroMotion.matches && timer === undefined) {
+      heroConversation.classList.add('is-linked');
+      drawEarth(rotation);
+      drawMessageMarker(rotation, performance.now());
+      timer = setInterval(() => {
+        rotation = (rotation + rotationSpeed * texture.width / (24 * 34)) % texture.width;
+        const coverage = drawEarth(rotation);
+        const oceanSpeed = 1 + 1.5 * Math.max(0, 1 - coverage / 0.035);
+        rotationSpeed += (oceanSpeed - rotationSpeed) * 0.08;
+        drawMessageMarker(rotation, performance.now());
+      }, 1000 / 24);
+    } else if ((!visible || !heroMotion.matches) && timer !== undefined) {
+      clearInterval(timer);
+      timer = undefined;
+      if (!heroMotion.matches) {
+        markers.forEach(marker => {
+          marker.animation?.cancel();
+          marker.bubble.textContent = marker.phrases[0];
+          marker.expiresAt = 0;
+          marker.litAt = -Infinity;
+        });
+        nextMessageAt = 0;
+        heroConversation.classList.remove('is-linked');
+        drawEarth(rotation);
+      }
+    }
+  }
+
+  drawEarth(rotation);
+  const observer = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    syncEarthRotation();
+  });
+  observer.observe(earth);
+  heroMotion.addEventListener('change', syncEarthRotation);
+});
+earthTexture.src = '/relay-earth-land.png';
+
+const privacyFilm = document.querySelector('.privacy-film');
+const privacyToggle = document.querySelector('.privacy-toggle');
+const privacyMotion = matchMedia('(prefers-reduced-motion: reduce)');
+let privacyPaused = false;
+privacyToggle.hidden = false;
+privacyFilm.addEventListener('playing', () => { privacyToggle.textContent = 'Pausar video'; });
+privacyFilm.addEventListener('pause', () => { privacyToggle.textContent = 'Reproducir video'; });
+privacyFilm.addEventListener('ended', () => { privacyToggle.textContent = 'Volver a reproducir'; });
+
+privacyToggle.addEventListener('click', () => {
+  privacyPaused = !privacyFilm.paused;
+  if (privacyPaused) privacyFilm.pause();
+  else privacyFilm.play().catch(() => {});
+});
+
+if ('IntersectionObserver' in window) {
+  const privacyObserver = new IntersectionObserver(([entry]) => {
+    if (entry.intersectionRatio < .45) privacyFilm.pause();
+    else if (!privacyPaused && !privacyFilm.ended && !privacyMotion.matches) {
+      privacyFilm.play().catch(() => {});
+    }
+  }, { threshold: .45 });
+  privacyObserver.observe(privacyFilm);
+}
+privacyMotion.addEventListener('change', () => {
+  if (privacyMotion.matches) privacyFilm.pause();
+});
+const privateNumber = document.querySelector('.relay-gallery-private-number');
+if ('IntersectionObserver' in window) {
+  const numberPart = privateNumber.querySelector('span');
+  const characters = [...numberPart.textContent];
+  numberPart.classList.add('relay-gallery-number-part');
+  numberPart.replaceChildren(...characters.map((character, index) => {
+    if (character === ' ') return document.createTextNode(character);
+    const digit = document.createElement('span');
+    digit.textContent = character;
+    digit.style.setProperty('--digit-delay', index);
+    return digit;
+  }));
+  privateNumber.classList.add('is-ready');
+}
+const callingNumber = document.querySelector('.relay-gallery-call-number');
+const callingReel = callingNumber.querySelector('.relay-gallery-call-reel');
+const callingMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const callingAreaCodes = ['202', '312', '415', '503', '617', '646', '720'];
+let callingVisible = false;
+let callingTimer;
+let settledCallingNumber = callingReel.textContent;
+
+let callingSpins = [];
+
+function rollCallingNumber() {
+  const current = settledCallingNumber;
+  const areaCode = callingAreaCodes[Math.floor(Math.random() * callingAreaCodes.length)];
+  const previousSuffix = Number(current.slice(-2));
+  const suffix = (previousSuffix + 1 + Math.floor(Math.random() * 99)) % 100;
+  const next = `+1 (${areaCode}) 555-01${String(suffix).padStart(2, '0')}`;
+  let digitIndex = 0;
+  const columns = [...current].map((character, index) => {
+    if (!/\d/.test(character)) {
+      return document.createTextNode(character);
+    }
+
+    const downward = digitIndex % 2 === 0;
+    const column = document.createElement('span');
+    const strip = document.createElement('span');
+    column.className = 'relay-gallery-call-digit';
+    strip.className = 'relay-gallery-call-strip';
+    const digits = [character];
+    for (let step = 0; step < 4; step += 1) {
+      digits.push((Number(digits.at(-1)) + 1 + Math.floor(Math.random() * 9)) % 10);
+    }
+    digits.push(next[index]);
+    if (downward) digits.reverse();
+    for (const digit of digits) {
+      const row = document.createElement('span');
+      row.textContent = digit;
+      strip.append(row);
+    }
+    column.append(strip);
+
+    const end = `translateY(-${(digits.length - 1) * 1.25}em)`;
+    const positions = downward ? [end, 'translateY(0)'] : ['translateY(0)', end];
+    callingSpins.push(strip.animate(
+      positions.map(transform => ({ transform })),
+      { delay: digitIndex * 55, duration: 680, easing: 'cubic-bezier(.22,.76,.27,1)', fill: 'both' },
+    ));
+    digitIndex += 1;
+    return column;
+  });
+
+  callingReel.replaceChildren(...columns);
+  callingSpins.at(-1).onfinish = () => {
+    settledCallingNumber = next;
+    resetCallingReel();
+  };
+}
+
+function resetCallingReel() {
+  callingSpins.forEach(spin => spin.cancel());
+  callingSpins = [];
+  callingReel.textContent = settledCallingNumber;
+}
+
+function syncCallingPreview() {
+  clearInterval(callingTimer);
+  resetCallingReel();
+  if (!callingVisible || callingMotion.matches) return;
+  callingTimer = setInterval(rollCallingNumber, 3200);
+}
+
+if ('IntersectionObserver' in window) {
+  const callingObserver = new IntersectionObserver(([entry]) => {
+    callingVisible = entry.isIntersecting && entry.intersectionRatio >= .75;
+    syncCallingPreview();
+  }, { threshold: .75 });
+  callingObserver.observe(callingNumber);
+  callingMotion.addEventListener('change', syncCallingPreview);
+}
+const gallery = document.querySelector('.relay-gallery-track');
+const [previousFeature, nextFeature] = document.querySelectorAll('.relay-gallery-actions button');
+const galleryCards = [...gallery.children];
+
+function cloneGalleryCards() {
+  return galleryCards.map(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.inert = true;
+    return clone;
+  });
+}
+
+const leadingCards = cloneGalleryCards();
+const trailingCards = cloneGalleryCards();
+gallery.prepend(...leadingCards);
+gallery.append(...trailingCards);
+const usernameMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const sampleUsernames = ['alex', 'maya', 'jordan'];
+const usernamePreviews = [...gallery.querySelectorAll('.relay-gallery-username')];
+const usernameValues = usernamePreviews.map(preview => preview.querySelector('.relay-gallery-username-value'));
+const visibleUsernamePreviews = new Set();
+let usernameTimer;
+let usernameIndex = 0;
+let typedLength = 0;
+let deletingUsername = false;
+
+function animateUsername() {
+  const username = sampleUsernames[usernameIndex];
+  typedLength += deletingUsername ? -1 : 1;
+  usernameValues.forEach(value => { value.textContent = username.slice(0, typedLength); });
+
+  let delay = deletingUsername ? 85 : 155;
+  if (typedLength === username.length) {
+    deletingUsername = true;
+    delay = 1400;
+  } else if (typedLength === 0) {
+    deletingUsername = false;
+    usernameIndex = (usernameIndex + 1) % sampleUsernames.length;
+    delay = 500;
+  }
+
+  usernameTimer = setTimeout(animateUsername, delay);
+}
+
+function syncUsernameAnimation() {
+  const shouldAnimate = visibleUsernamePreviews.size > 0 && !usernameMotion.matches;
+  usernamePreviews.forEach(preview => {
+    preview.classList.toggle('is-visible', shouldAnimate && visibleUsernamePreviews.has(preview));
+  });
+
+  if (!shouldAnimate) {
+    clearTimeout(usernameTimer);
+    usernameTimer = undefined;
+    if (usernameMotion.matches) {
+      usernameIndex = 0;
+      typedLength = 0;
+      deletingUsername = false;
+      usernameValues.forEach(value => { value.textContent = sampleUsernames[0]; });
+    }
+  } else if (usernameTimer === undefined) {
+    usernameTimer = setTimeout(animateUsername, 550);
+  }
+}
+
+if ('IntersectionObserver' in window) {
+  const usernameObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting && entry.intersectionRatio >= .5) visibleUsernamePreviews.add(entry.target);
+      else visibleUsernamePreviews.delete(entry.target);
+    }
+    syncUsernameAnimation();
+  }, { threshold: .5 });
+  usernamePreviews.forEach(preview => usernameObserver.observe(preview));
+  usernameMotion.addEventListener('change', syncUsernameAnimation);
+}
+
+if ('IntersectionObserver' in window) {
+  const numberObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      entry.target.classList.toggle('is-blurring', entry.intersectionRatio >= .75);
+    }
+  }, { threshold: .75 });
+  gallery.querySelectorAll('.relay-gallery-private-number').forEach(number => numberObserver.observe(number));
+}
+
+
+function galleryStop(card) {
+  const padding = parseFloat(getComputedStyle(gallery).paddingLeft) || 0;
+  return card.getBoundingClientRect().left - gallery.getBoundingClientRect().left + gallery.scrollLeft - padding;
+}
+
+function wrapGallery() {
+  const start = galleryStop(galleryCards[0]);
+  const end = galleryStop(trailingCards[0]);
+  if (gallery.scrollLeft < start - 2) {
+    gallery.scrollTo({ left: gallery.scrollLeft + end - start, behavior: 'instant' });
+  } else if (gallery.scrollLeft >= end - 2) {
+    gallery.scrollTo({ left: gallery.scrollLeft - end + start, behavior: 'instant' });
+  }
+}
+
+function moveGallery(direction) {
+  const stops = [...gallery.children].map(galleryStop);
+  const target = direction > 0
+    ? stops.find(stop => stop > gallery.scrollLeft + 2)
+    : stops.reverse().find(stop => stop < gallery.scrollLeft - 2);
+  if (target === undefined) return;
+  gallery.scrollTo({ left: target, behavior: privacyMotion.matches ? 'instant' : 'smooth' });
+}
+
+gallery.scrollTo({ left: galleryStop(galleryCards[0]), behavior: 'instant' });
+previousFeature.addEventListener('click', () => moveGallery(-1));
+nextFeature.addEventListener('click', () => moveGallery(1));
+gallery.addEventListener('keydown', event => {
+  if (event.target !== gallery || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+  event.preventDefault();
+  moveGallery(event.key === 'ArrowLeft' ? -1 : 1);
+});
+if ('onscrollend' in gallery) {
+  gallery.addEventListener('scrollend', wrapGallery);
+} else {
+  let wrapTimer;
+  gallery.addEventListener('scroll', () => {
+    clearTimeout(wrapTimer);
+    wrapTimer = setTimeout(wrapGallery, 160);
+  }, { passive: true });
+}
+</script></body></html>
